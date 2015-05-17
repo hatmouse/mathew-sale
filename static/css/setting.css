@@ -1,0 +1,67 @@
+.onesale .delsaletest {
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    /* padding-left: 10px; */
+    border: 2px solid rgb(255, 93, 93);
+    width: 50px;
+}
+.onesale .delsaletest:hover{
+    border: 2px solid #0BEA90;
+    background-color: #0BEA90;
+}
+/*上面没有任何作用*/
+.setting{
+	padding-top: 30px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.onesale{
+	display: inline-block;
+	margin: 20px;
+}
+.onesale .name{
+	text-align: center;
+	display: inline-block;
+	line-height: 30px;
+	height: 30px;
+	border-left: 2px solid;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	padding-left: 10px;
+	padding-right: 5px;
+}
+.onesale .delsale {
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    /* padding-left: 10px; */
+    border: 2px solid rgb(255, 93, 93);
+    width: 50px;
+}
+.onesale .delsale:hover{
+    border: 2px solid #0BEA90;
+    background-color: #0BEA90;
+}
+.logout{
+    cursor: pointer;
+    text-align: center;
+    color: rgb(44, 193, 133);
+}
+.logout:hover{
+    background-color: rgb(59, 240, 167);
+    color: #ffffff;
+}
+.panel-title{
+    cursor: pointer;
+}
+.panel-title span{
+    float: right;
+}
+.panel .panel-body{
+}

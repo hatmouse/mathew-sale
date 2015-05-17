@@ -1,0 +1,28 @@
+/**
+ *
+ * Created by Home on 2015/3/31.
+ */
+.mytip{
+  text-align: center;
+  line-height: 40px;
+  position: fixed;
+  z-index: 199;
+  /*width: 50%;*/
+  /*left: 25%;*/
+    width: 100%;
+  bottom: 0px;
+  font-size: 15px;
+  height: 40px;
+  display: block;
+  /*background-color: rgb(40, 40, 40);*/
+
+}
+.mytip span{
+      background-color: rgb(40, 40, 40);
+    display: inline-block;
+  padding: 0 20px;
+  -moz-box-shadow: 10px 10px 5px #888888;
+  box-shadow: 0px 0px 10px #030303;
+  color: rgb(37, 255, 173);
+  font-weight: bold;
+}

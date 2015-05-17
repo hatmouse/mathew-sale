@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SXU Flea Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style_common.css"/>
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/jquery.fileupload.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/mytab.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/allneed.css"/>
+    <!--需要初始化的变量值-->
+    <script>
+        username = 'hatmouse';
+        page_number = {{page_number}};
+    </script>
+</head>
+<body>
+<header class="codrops-header">
+    <h1>SXU Flea Market<span>free and cute～</span></h1>
+</header>
+
+<section style="display: none">
+    <div class="tabs tabs-style-bar">
+        <nav>
+            <ul class="clearfix">
+                <li><a href="/" class="icon icon-home home"><span>Home</span></a></li>
+                <li><a href="#section-bar-2" class="icon icon-display selectmore"><span>Analytics</span></a></li>
+                <li><a href="#section-bar-3" class="icon icon-upload"><span>Upload</span></a></li>
+                <li><a href="/mysetting" class="icon icon-tools mysetting"><span>Settings</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<div class="mytabs">
+    <nav>
+        <ul class="clearfix">
+            <li><a href="/">首页</a></li>
+            <li><a href="/mysetting">添加</a></li>
+            <li><a href="/mysetting">设置</a></li>
+            <li><a href="/help">帮助</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="salelist">
+    <div id="grid" class="clearfix">
+        <!--<div class="view" sale_id=1>-->
+            <!--<div class="item_img">-->
+                <!--<img src="static/images/1.jpg"/>-->
+                <!--<span class="price">152</span>-->
+            <!--</div>-->
+            <!--<div class="info info_m">-->
+                <!--<div class="name">二手自行车</div>-->
+                <!--<div class="detial">-->
+                    <!--<span class="badge d_price">15RMB</span>-->
+                    <!--<span class="badge d_newold">99新</span>-->
+                <!--</div>-->
+                <!--<div class="sale_lable">-->
+                    <!--<span class="label label-default">衣服</span>-->
+                    <!--<span class="label label-danger">SALE!</span>-->
+                <!--</div>-->
+                <!--<div class="username">mathew</div>-->
+                <!--<div class="contact">18735384347</div>-->
+                <!--<div class="abstract">刚用没多久，捷安特牌子的，又要的么，可以看看啊啊啊啊啊啊啊热让我哦啊玩儿啊人</div>-->
+                <!--<div class="readmore">More</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--这段是在服务器端生成的，还有一部分在客户端使用json生成-->
+        {% for x in salelists %}
+        <div class="view" sale_id="{{x[0]}}">
+            <div class="item_img">
+                <img src="http://winter1ife.qiniudn.com/{{x[8]}}?imageView2/0/w/120/h/120"/>
+                <span class="price">{{x[4]}}</span>
+            </div>
+            {% if x[2]==1 %}
+            <div class="info info_m">
+            {% else %}
+            <div class="info info_w">
+            {% end %}
+                <div class="name">{{x[3]}}</div>
+                <div class="detial">
+                    <span class="badge d_price">{{x[5]}}RMB</span>
+                    <span class="badge d_newold">{{x[6]}}新</span>
+                </div>
+                <div class="username">{{x[1]}}</div>
+                <div class="contact">{{x[7]}}</div>
+                <div class="abstract">{{x[4]}}</div>
+                <div class="readmore">More</div>
+            </div>
+            </div>
+        {% end %}
+        </div>
+    <div class="spinner"></div>
+    <!--同时也会在main.js用js实现控制，降低耦合度-->
+    <ul class="pager">
+        <li class='page_previous'><a href="./?p={{page_number-1}}">前一页</a></li>
+        <li><a class='page_number' href="#">{{page_number}}</a></li>
+        <li class='page_next'><a href="./?p={{page_number+1}}">后一页</a></li>
+    </ul>
+    </div>
+     <div style="width: 100%;text-align: center;  font-size: 3px;color: silver;">Powered by Chu Junming, All Rights Reserved. <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254697360'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254697360%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</div>
+<div class="setting" style="display:none;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                对你的二手宝贝进行操作？
+            </h3>
+        </div>
+        <div class="panel-body mysales">
+            <div class="onesale">
+                <span class="name">二手自行车</span>
+                <span class="delsale">删除</span>
+            </div>
+            <div class="onesale">
+                <span class="name">二手自行车</span>
+                <span class="delsale">删除</span>
+            </div>
+            <div class="onesale">
+                <span class="name">二手自行车</span>
+                <span class="delsale">删除</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                新添加一个二手宝贝？
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">宝贝名称</label>
+                    <input type="text" class="form-control" id="input_name"
+                           placeholder="请输入名称">
+                </div>
+                <div class="form-group">
+                    <label for="desc">宝贝描述</label>
+                    <textarea class="form-control" id="input_desc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">宝贝名称</label>
+                    <input type="text" class="form-control" id="input_contact"
+                           placeholder="请输入你的联系方式">
+                </div>
+                <div class="form-group">
+                    <label for="type">选择宝贝类型</label>
+                    <select class="form-control">
+                        <option>数码类</option>
+                        <option>书籍类</option>
+                        <option>日用类</option>
+                        <option>衣服类</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">价格？</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">￥</span>
+                        <input type="text" class="form-control" id="input_price" placeholder="需要输入具体数字">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">新旧程度？</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input_newold" placeholder="需输入具体数字,表示几成新">
+                        <span class="input-group-addon">成新</span>
+                    </div>
+                </div>
+                <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择照片...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="file" multiple>
+    </span>
+    <span class="btn btn-success successtip" style="margin-left: 10px;display: none;">
+        <i class="glyphicon glyphicon-ok"></i>
+        <span>Success</span>
+    </span>
+                <br>
+                <br>
+                <!-- The global progress bar -->
+                <div id="progress" class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" style="margin-bottom: 10px;"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+                <div class="alert alert-warning alert-dismissable uploadalert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">
+                        &times;
+                    </button>
+                    <span>警告！请不要提交。</span>
+                </div>
+                <button class="btn btn-default submitsale">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--div弹出二手物品介绍-->
+<div class="popmask">
+    <div class="popsale">
+        <div class="pop_header">
+            <div class="pop_name">山大自信车一辆</div>
+            <span class="pop_close">×</span>
+        </div>
+        <div class="pop_container">
+            <div class="pop_username"><span class="t">同学:</span> <span class="c">带麦子的书</span></div>
+            <div class="pop_price"><span class="t">价格:</span> <span class="c">55</span></div>
+            <div class="pop_desc"><span class="t">描述:</span> <span
+                    class="c">很久不用的的自行车，要甩手，不想要的，真的是大减价所有人的，是阿尔啊哦发哦发哦啊啊哦</span></div>
+            <div class="pop_newold"><span class="t">新旧:</span> <span class="c">99成新</span></div>
+            <div class="pop_contact"><span class="t">联系:</span> <span class="c">131231123123</span></div>
+            <div class="pop_comments">点击图片和旁边是不同效果的～</div>
+        </div>
+    </div>
+</div>
+<div class="mytip" style="display: none">
+    <span>添加成功</span>
+</div>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="../static/js/main.js"></script>
+<script src="../static/js/allneed.js"></script>
+<script>
+    $(function () {
+        getsales();
+        bind_pop_sale();
+    });
+</script>
+<script>
+    $(function(){
+        if (page_number==1){
+            $('.page_previous a').attr('href','###');
+            $('.page_previous').addClass('disabled');
+        }
+    // 监听滚动事件
+    $(window).scroll(function(){
+         // 获得div的高度
+         var h = $(".spinner").offset().top-$(window).height();
+         if($(this).scrollTop()>h ) {
+             // 滚动到指定位置
+             setTimeout(function () {
+                 $('.spinner').hide();
+             }, 2000);
+         }else{
+             console.log($(this).scrollTop()+"-"+$(".spinner").offset().top+"-"+$(window).height());
+         }
+    });
+
+})
+</script>
+
+</body>
+</html>

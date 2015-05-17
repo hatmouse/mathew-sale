@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/allneed.css"/>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        .box {
+            width: 100%;
+            height: 100%;
+            background-color: #e7ecea;
+        }
+
+        .resiger-box {
+            width: 100%;
+            max-width: 500px;
+            height: 450px;
+            position: absolute;
+            top: 50%;
+            margin-top: -200px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            margin-top: -200px;
+        }
+
+        @media screen and (min-width: 500px) {
+            .login-box, .resiger-box {
+                left: 50%;
+                margin-left: -250px;
+            }
+        }
+
+        .resiger-content {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255, 250, 255, .6);
+            float: left;
+        }
+
+        .login-content {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255, 250, 255, .6);
+            float: left;
+        }
+
+        .input-group {
+            height: 40px;
+            margin: 20px 20px 10px 20px;
+        }
+        .input-group input {
+            height: 40px;;
+        }
+
+        .submit-bt {
+            padding-top: 10px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .login-title, .resiger-title {
+            height: 100px;
+            line-height: 100px;
+            background-color: #2CC185;
+            text-align: center;
+            font-size: 2.5em;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-info {
+            background-color: #5BDED4;
+            border-color: #5BDED4;
+            padding: 8px 25px;
+        }
+
+        .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open > .dropdown-toggle.btn-info {
+            background-color: #5BDED4;
+            border-color: #5BDED4;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box">
+    <div class="login-box" style="display: none">
+        <div class="login-title">
+            登录
+        </div>
+        <div class="login-content ">
+                            <div class="input-group"><span class="input-group-addon"><span
+                                    class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" id="l_username" name="username" class="form-control"
+                                       placeholder="用户名">
+                            </div>
+                            <div class="input-group"><span class="input-group-addon"><span
+                                    class="glyphicon glyphicon-lock"></span></span>
+                                <input type="text" id="l_password" name="password" class="form-control"
+                                       placeholder="密码">
+                            </div>
+                    <div class="submit-bt">
+                            <button class="btn btn-sm btn-info" id="login_bt"><span
+                                    class="glyphicon glyphicon-off"></span> 登录
+                            </button>
+                            <a href="#" class="login_resiger">点此注册</a>
+                    </div>
+        </div>
+    </div>
+    <div class="resiger-box">
+        <div class="resiger-title">
+            注册
+        </div>
+        <div class="resiger-content ">
+            <div class="input-group"><span class="input-group-addon"><span
+                    class="glyphicon glyphicon-user"></span></span>
+                <input type="text" id="r_username" name="r_username" class="form-control"
+                       placeholder="用户名">
+            </div>
+            <div class="input-group"><span class="input-group-addon"><span
+                    class="glyphicon glyphicon-tree-deciduous"></span></span>
+                <input type="text" id="r_nickname" name="r_nickname" class="form-control"
+                       placeholder="昵称">
+            </div>
+            <div class="input-group"><span class="input-group-addon"><span
+                    class="glyphicon glyphicon-lock"></span></span>
+                <input type="text" id="r_password" name="r_password" class="form-control"
+                       placeholder="密码">
+            </div>
+            <div style="padding-top: 10px;padding-left: 15px;">
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="radiom"
+                           value=1 checked> 男
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="radiow"
+                           value=2> 女
+                </label>
+
+            </div>
+            <div class="submit-bt">
+                <button class="btn btn-sm btn-info " id="resiger_bt"><span
+                        class="glyphicon glyphicon-off"></span> 注册
+                </button>
+                <a href="#" class="resiger_login">已有点此登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mytip" style="display: none">
+    <span>添加成功</span>
+</div>
+<script src="../static/js/allneed.js"></script>
+<script>
+    $('.resiger_login').bind('click', function () {
+        $('.resiger-box').css('display', 'none');
+        $('.login-box').css('display', 'block');
+    });
+    $('.login_resiger').bind('click', function () {
+        $('.resiger-box').css('display', 'block');
+        $('.login-box').css('display', 'none');
+    });
+    $('#resiger_bt').bind('click', function () {
+        var username = $('#r_username').val();
+        var nickname = $('#r_nickname').val();
+        var password = $('#r_password').val();
+        var sex = $('input:radio:checked').val();
+        if ((username.match(/[\x01-\xFF]*/)==false)||(password.match(/[\x01-\xFF]*/)==false)){
+            playtip('用户名和密码只能为数字和字母～');
+            return  false;
+        }
+        if (username == '' || nickname == '' || password == '') {
+            playtip('不能为空～');
+            return  false;
+        }
+        else {
+            $.post('/resiger', {
+                username: username,
+                nickname: nickname,
+                password: password,
+                sex: sex
+            }, function (data) {
+                if (data.resultcode == 'success') {
+                    playtip('注册成功，即将调跳到主页～');
+                    setTimeout(function(){
+                        window.location.href = '/'
+                    },2000);
+                } else if (data.resultcode == 'repeat') {
+                    playtip('用户名重复');
+                }
+            }, "json");
+        }
+        return false;
+    });
+    $('#login_bt').bind('click', function () {
+        var username = $('#l_username').val();
+        var password = $('#l_password').val();
+        $.post('/login', {
+            username: username,
+            password: password
+        }, function (data) {
+            if (data.resultcode == 'success') {
+                playtip('登录成功，即将调跳到主页～');
+                setTimeout(function(){
+                    window.location.href = '/'
+                },2000);
+            } else {
+                playtip('登录失败～');
+            }
+        }, "json");
+        return false;
+    })
+</script>
+</body>
+</html>

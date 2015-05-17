@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/setting.css"/>
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/jquery.fileupload.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/mytab.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/allneed.css"/>
+    <!--需要初始化的变量值-->
+    <script>
+        username = '{{username}}';
+    </script>
+</head>
+<body>
+<header class="codrops-header">
+    <h1>SXU Flea Market<span>free and cute～</span></h1>
+</header>
+
+<section style="display: none">
+    <div class="tabs tabs-style-bar">
+        <nav>
+            <ul>
+                <li><a href="/" class="icon icon-home home"><span>Home</span></a></li>
+                <li><a href="#section-bar-2" class="icon icon-display selectmore"><span>Analytics</span></a></li>
+                <li><a href="#section-bar-3" class="icon icon-upload"><span>Upload</span></a></li>
+                <li><a href="/mysetting" class="icon icon-tools mysetting"><span>Settings</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<div class="mytabs">
+    <nav>
+        <ul class="clearfix">
+            <li><a href="/">首页</a></li>
+            <li><a href="/mysetting">添加</a></li>
+            <li><a href="/mysetting">设置</a></li>
+            <li><a href="/help">帮助</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="setting" >
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            个人信息<span class="glyphicon glyphicon-plus"></span>
+          </h3>
+
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">用户名 : {{username}}</li>
+                <li class="list-group-item">昵&emsp;称 : {{nickname}}</li>
+                <li class="list-group-item logout">退出</li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                对你的二手宝贝进行操作？<span class="glyphicon glyphicon-plus"></span>
+            </h3>
+        </div>
+        <div class="panel-body mysales" style="display: none">
+            <div class="onesale">
+                <span class="name">你可以选择一个点击删除</span>
+                <span class="delsaletest">删除</span>
+            </div>
+            {% for one in mysales %}
+            <div class="onesale" sale_id="{{one[0]}}">
+                <span class="name">{{one[1]}}</span>
+                <span class="delsale">删除</span>
+            </div>
+            {% end %}
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                新添加一个二手宝贝？<span class="glyphicon glyphicon-plus"></span>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">宝贝名称</label>
+                    <input type="text" class="form-control" id="input_name"
+                           placeholder="请输入名称">
+                </div>
+                <div class="form-group">
+                    <label for="desc">宝贝描述</label>
+                    <textarea class="form-control" id="input_desc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">联系方式</label>
+                    <input type="text" class="form-control" id="input_contact"
+                           placeholder="请输入你的联系方式">
+                </div>
+                <div class="form-group">
+                    <label for="type">选择宝贝类型</label>
+                    <select class="form-control">
+                        <option>数码类</option>
+                        <option>书籍类</option>
+                        <option>日用类</option>
+                        <option>衣服类</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">价格？</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">￥</span>
+                        <input type="text" class="form-control" id="input_price" placeholder="需要输入具体数字">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">新旧程度？</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input_newold" placeholder="需输入具体数字,表示几成新">
+                        <span class="input-group-addon">成新</span>
+                    </div>
+                </div>
+                <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择照片...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="file" multiple>
+    </span>
+    <span class="btn btn-success successtip" style="margin-left: 10px;display: none;">
+        <i class="glyphicon glyphicon-ok"></i>
+        <span>Success</span>
+    </span>
+                <br>
+                <br>
+                <!-- The global progress bar -->
+                <div id="progress" class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" style="margin-bottom: 10px;"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+                <div class="alert alert-warning alert-dismissable uploadalert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">
+                        &times;
+                    </button>
+                    <span>警告！请不要提交。</span>
+                </div>
+                <button class="btn btn-default submitsale">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="mytip" style="display: none">
+    <span>添加成功</span>
+</div>
+<script src="../static/js/vendor/jquery.ui.widget.js"></script>
+<script src="../static/js/jquery.iframe-transport.js"></script>
+<script src="../static/js/jquery.fileupload.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="../static/js/setting.js"></script>
+<script src="../static/js/allneed.js"></script>
+<script>
+    $(function () {
+        bind_del();
+        Init_Upload();
+    });
+</script>
+</body>
+</html>
